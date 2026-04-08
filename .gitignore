@@ -1,0 +1,25 @@
+# Skills / AI tooling (installed locally, not part of the site)
+.agents/
+.claude/
+.windsurf/
+skills-lock.json
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Original/unprocessed images
+# Keep originals locally for reprocessing — only commit dithered versions
+assets/images/original/
+
+# Logs
+*.log

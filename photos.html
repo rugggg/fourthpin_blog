@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Photos — fourthpin</title>
+  <meta name="description" content="Photos by Doug Woodward.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="assets/favicon.ico">
+</head>
+<body>
+  <div class="container container-wide">
+
+    <header>
+      <a href="/" class="site-title">fourthpin</a>
+      <nav>
+        <a href="about.html">about</a>
+        <a href="blog.html">blog</a>
+        <a href="photos.html" aria-current="page">photos</a>
+      </nav>
+    </header>
+
+    <main>
+
+      <div class="archive-header">
+        <h1>Photos</h1>
+        <p>Places, light, things that looked interesting.</p>
+      </div>
+
+      <!--
+        HOW TO ADD A PHOTO
+        ==================
+        1. Put your image file in assets/images/photos/
+           e.g. assets/images/photos/vietnam-alley.jpg
+
+        2. (Optional but recommended) Make a dithered version:
+           convert assets/images/photos/vietnam-alley.jpg \
+             -colorspace Gray -ordered-dither 8x8 -resize 1200x \
+             assets/images/photos/vietnam-alley-dithered.png
+
+        3. Copy ONE of the <figure> blocks below and fill in:
+           - id="photo-N"  (increment for each new photo)
+           - src="assets/images/photos/YOUR-FILE"
+           - alt="describe the image for screen readers"
+           - figcaption: location/year, one line
+
+        4. The lightbox <div> at the bottom of the page needs a matching
+           entry — copy one of the lightbox blocks and update the id and src.
+
+        That's it.
+      -->
+
+      <!-- ── Photo grid ───────────────────────────────────────── -->
+      <div class="photo-grid">
+
+        <!--
+          EXAMPLE ENTRY (uncomment and fill in):
+
+          <figure>
+            <a href="#photo-1">
+              <img
+                src="assets/images/photos/YOUR-PHOTO.jpg"
+                alt="Describe what's in the photo"
+                width="800"
+                height="600"
+                loading="lazy"
+              >
+            </a>
+            <figcaption>Location · Year</figcaption>
+          </figure>
+        -->
+
+      </div><!-- /photo-grid -->
+
+    </main>
+
+    <footer>
+      <div class="footer-inner">
+        <span>© 2026 Doug Woodward · fourthpin</span>
+        <span>Plain HTML · No JavaScript · <a href="https://github.com/dougwoodward/blog" rel="noopener">Source</a></span>
+      </div>
+    </footer>
+
+  </div><!-- /container -->
+
+  <!--
+    LIGHTBOX ENTRIES
+    ================
+    For each photo in the grid above, add a matching lightbox block here.
+    The id must match the href="#photo-N" in the grid.
+
+    EXAMPLE (uncomment and fill in):
+
+    <div id="photo-1" class="lightbox" role="dialog" aria-modal="true" aria-label="Photo 1">
+      <a href="#" class="lightbox-close" aria-label="Close">✕</a>
+      <figure class="lightbox-inner">
+        <img
+          src="assets/images/photos/YOUR-PHOTO.jpg"
+          alt="Describe what's in the photo"
+        >
+        <figcaption>Location · Year</figcaption>
+      </figure>
+    </div>
+  -->
+
+</body>
+</html>

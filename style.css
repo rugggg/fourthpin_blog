@@ -836,69 +836,80 @@ footer::before {
   }
 }
 
-/* ── 22. Brewing / coffee stain ─────────────────────────────── */
+/* ── 22. Brewing card — HUD overlay ────────────────────────── */
 /*
-   The stain is painted on the page background via body::before.
-   The .brewing-card text sits over it, fully transparent-backed.
-   Both are pointer-events: none — nothing is blocked.
-   Update the HTML in every page when you switch bags.
+   Marathon geometry + Persona 5 energy.
+   Update the three spans in every HTML file when you switch bags.
+   pointer-events: none — never blocks anything.
 */
 
-/* Coffee ring stain seeping in from the top-right corner */
-body::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 290px;
-  height: 270px;
-  pointer-events: none;
-  z-index: 0;
-  background:
-    /* Ring edge — where coffee dried and concentrated */
-    radial-gradient(ellipse 50% 46% at 60% 34%,
-      transparent 30%,
-      rgba(88,46,8,0.21) 34%, rgba(88,46,8,0.13) 41%,
-      rgba(88,46,8,0.03) 53%, transparent 63%),
-    /* Puddle pooling around the ring */
-    radial-gradient(ellipse 80% 64% at 60% 34%,
-      rgba(88,46,8,0.02) 0%, rgba(88,46,8,0.07) 44%,
-      rgba(88,46,8,0.02) 63%, transparent 75%),
-    /* Drip running down the right edge */
-    radial-gradient(ellipse 11% 28% at 96% 54%,
-      rgba(88,46,8,0.1) 0%, rgba(88,46,8,0.03) 58%, transparent 76%),
-    /* Corner bleed — the spill source */
-    radial-gradient(ellipse 58% 40% at 92% 8%,
-      rgba(88,46,8,0.12) 0%, transparent 56%);
-}
-
-/* Brewing text — transparent background, floats over the stain */
 .brewing-card {
   position: fixed;
   top: var(--sp-4);
   right: var(--sp-4);
   z-index: 50;
   pointer-events: none;
-  background: transparent;
-  border: none;
-  box-shadow: none;
-  padding: 0.5rem 0.65rem;
-  width: 138px;
-  /* slight tilt like a handwritten label */
-  transform: rotate(0.8deg);
-  transform-origin: top right;
+  width: 158px;
+
+  /* Dark terminal panel, orange border system */
+  background: rgba(28, 26, 23, 0.92);
+  border: 1px solid rgba(168, 58, 10, 0.38);
+  border-top: 2px solid var(--accent);
+
+  /* Persona-style diagonal cut — bottom-left corner */
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 14px 100%, 0 calc(100% - 14px));
+
+  padding: 0.5rem 0.65rem 0.65rem;
+
+  /* orange ambient glow */
+  box-shadow:
+    0 0 20px rgba(168, 58, 10, 0.13),
+    inset 0 0 28px rgba(168, 58, 10, 0.04);
+}
+
+/* Marathon corner bracket — bottom right */
+.brewing-card::before {
+  content: '';
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  width: 8px;
+  height: 8px;
+  border-bottom: 1.5px solid rgba(168, 58, 10, 0.48);
+  border-right: 1.5px solid rgba(168, 58, 10, 0.48);
+}
+
+/* CRT scan-line texture */
+.brewing-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0px,
+    transparent 3px,
+    rgba(255, 255, 255, 0.018) 3px,
+    rgba(255, 255, 255, 0.018) 4px
+  );
+  pointer-events: none;
 }
 
 .brewing-card-label {
   display: block;
   font-family: var(--font-mono);
-  font-size: 0.6rem;
-  letter-spacing: 0.13em;
+  font-size: 0.58rem;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: rgba(80,42,8,0.52);
-  border-bottom: 1px solid rgba(88,46,8,0.18);
-  padding-bottom: 0.28em;
-  margin-bottom: 0.38em;
+  color: var(--accent);
+  border-bottom: 1px solid rgba(168, 58, 10, 0.26);
+  padding-bottom: 0.3em;
+  margin-bottom: 0.45em;
+}
+
+/* Persona ▸ chevron */
+.brewing-card-label::before {
+  content: '▸';
+  margin-right: 0.35em;
 }
 
 .brewing-card-bean {
@@ -906,16 +917,16 @@ body::before {
   font-family: var(--font-serif);
   font-style: italic;
   font-size: 0.82rem;
-  color: rgba(38,18,4,0.88);
+  color: #F2EDE4;
   line-height: 1.25;
-  margin-bottom: 0.2em;
+  margin-bottom: 0.22em;
 }
 
 .brewing-card-roaster {
   display: block;
   font-family: var(--font-mono);
-  font-size: 0.62rem;
-  color: rgba(50,25,6,0.62);
+  font-size: 0.6rem;
+  color: rgba(242, 237, 228, 0.5);
   letter-spacing: 0.03em;
 }
 
@@ -923,19 +934,22 @@ body::before {
   display: block;
   font-family: var(--font-mono);
   font-size: 0.58rem;
-  color: rgba(50,25,6,0.42);
-  letter-spacing: 0.1em;
+  color: rgba(168, 58, 10, 0.82);
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  margin-top: 0.3em;
+  margin-top: 0.32em;
+}
+
+/* Status marker */
+.brewing-card-process::before {
+  content: '■';
+  margin-right: 0.32em;
+  font-size: 0.46rem;
 }
 
 @media (max-width: 600px) {
-  body::before {
-    width: 200px;
-    height: 190px;
-  }
   .brewing-card {
-    width: 114px;
+    width: 136px;
   }
 }
 
@@ -945,7 +959,6 @@ body::before {
   .back-link,
   .post-nav,
   footer,
-  body::before,
   .brewing-card { display: none; }
 
   body {

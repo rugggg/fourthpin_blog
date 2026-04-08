@@ -1,0 +1,194 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100"
+     aria-hidden="true" focusable="false">
+  <g fill="none" stroke="#6B6460" stroke-width="1" stroke-linecap="round"
+     stroke-linejoin="round" opacity="0.9">
+
+    <!-- Ground line -->
+    <line x1="0" y1="95" x2="1440" y2="95"/>
+
+    <!-- Tube houses — left cluster (Hà Nội phố cổ) -->
+    <path d="M5,95V58H26V95"/>
+    <path d="M26,95V52H47V95"/>
+    <path d="M47,95V62H66V95"/>
+    <path d="M66,95V48H88V95"/>
+    <path d="M88,95V55H108V95"/>
+    <path d="M108,95V44H130V95"/>
+    <path d="M130,95V58H152V95"/>
+    <rect x="8"   y="64" width="9"  height="7"/>
+    <rect x="8"   y="76" width="9"  height="7"/>
+    <rect x="29"  y="58" width="9"  height="7"/>
+    <rect x="29"  y="70" width="9"  height="7"/>
+    <rect x="29"  y="82" width="9"  height="7"/>
+    <rect x="70"  y="55" width="10" height="7"/>
+    <rect x="70"  y="68" width="10" height="7"/>
+    <rect x="70"  y="81" width="10" height="7"/>
+    <rect x="112" y="51" width="9"  height="7"/>
+    <rect x="112" y="64" width="9"  height="7"/>
+    <rect x="112" y="77" width="9"  height="7"/>
+    <rect x="112" y="90" width="5"  height="4"/>
+    <rect x="134" y="64" width="9"  height="7"/>
+    <rect x="134" y="77" width="9"  height="7"/>
+
+    <!-- Communal house / Đình — wide curved double-eave roof -->
+    <path d="M162,95V74H278V95"/>
+    <path d="M157,74C175,68 195,62 220,59C245,62 265,68 283,74"/>
+    <path d="M170,62C187,56 202,52 220,50C238,52 253,56 270,62"/>
+    <path d="M157,74L153,70"/>
+    <path d="M283,74L287,70"/>
+    <path d="M170,62L166,57"/>
+    <path d="M270,62L274,57"/>
+    <line x1="190" y1="95" x2="190" y2="74"/>
+    <line x1="220" y1="95" x2="220" y2="74"/>
+    <line x1="250" y1="95" x2="250" y2="74"/>
+    <path d="M207,95V80Q220,73 233,80V95"/>
+
+    <!-- 4-tier pagoda — upturned eaves on each level -->
+    <path d="M292,95V80H374V95"/>
+    <path d="M286,76L292,80H374L380,76"/>
+    <path d="M300,80V65H366V80"/>
+    <path d="M294,61L300,65H366L372,61"/>
+    <path d="M308,65V52H358V65"/>
+    <path d="M302,48L308,52H358L364,48"/>
+    <path d="M315,52V40H351V52"/>
+    <path d="M310,36L315,40H351L357,36"/>
+    <path d="M333,40V26M329,32L333,26L337,32"/>
+
+    <!-- Tube houses cluster 2 -->
+    <path d="M388,95V58H408V95"/>
+    <path d="M408,95V52H428V95"/>
+    <path d="M428,95V62H446V95"/>
+    <path d="M446,95V55H468V95"/>
+    <path d="M468,95V65H486V95"/>
+    <path d="M486,95V58H504V95"/>
+    <rect x="391" y="64" width="9"  height="7"/>
+    <rect x="391" y="76" width="9"  height="7"/>
+    <rect x="411" y="58" width="9"  height="7"/>
+    <rect x="411" y="70" width="9"  height="7"/>
+    <rect x="411" y="82" width="9"  height="7"/>
+    <rect x="449" y="62" width="10" height="7"/>
+    <rect x="449" y="75" width="10" height="7"/>
+    <rect x="449" y="88" width="5"  height="5"/>
+
+    <!-- French colonial building — mansard roof, arched windows -->
+    <path d="M512,95V58H628V95"/>
+    <path d="M509,58L570,42L631,58"/>
+    <path d="M535,58V49H549V58L542,43Z"/>
+    <path d="M593,58V49H607V58L600,43Z"/>
+    <path d="M521,82V70Q529,64 537,70V82"/>
+    <path d="M541,82V70Q549,64 557,70V82"/>
+    <path d="M561,82V70Q569,64 577,70V82"/>
+    <path d="M581,82V70Q589,64 597,70V82"/>
+    <path d="M601,82V70Q609,64 617,70V82"/>
+    <line x1="512" y1="84" x2="628" y2="84"/>
+    <rect x="521" y="87" width="14" height="7"/>
+    <rect x="541" y="87" width="14" height="7"/>
+    <rect x="561" y="87" width="14" height="7"/>
+    <rect x="581" y="87" width="14" height="7"/>
+    <rect x="601" y="87" width="14" height="7"/>
+
+    <!-- Short gap buildings -->
+    <path d="M636,95V66H656V95"/>
+    <path d="M656,95V72H674V95"/>
+    <path d="M674,95V62H684V95"/>
+
+    <!-- Tháp Rùa / Turtle Tower — Hồ Hoàn Kiếm -->
+    <path d="M692,95V65H762V95"/>
+    <path d="M698,65V52H756V65"/>
+    <path d="M705,52V42H749V52"/>
+    <path d="M712,42V33H742V42"/>
+    <path d="M712,33V29H717V33M722,33V29H727V33M732,33V29H737V33M742,33V29"/>
+    <path d="M710,95V75Q727,67 744,75V95"/>
+    <rect x="699" y="70" width="8" height="7"/>
+    <rect x="747" y="70" width="8" height="7"/>
+    <rect x="706" y="56" width="8" height="6"/>
+    <rect x="740" y="56" width="8" height="6"/>
+
+    <!-- Tube houses cluster 3 -->
+    <path d="M770,95V58H790V95"/>
+    <path d="M790,95V50H812V95"/>
+    <path d="M812,95V62H830V95"/>
+    <path d="M830,95V54H852V95"/>
+    <path d="M852,95V66H870V95"/>
+    <rect x="773" y="64" width="9"  height="7"/>
+    <rect x="773" y="76" width="9"  height="7"/>
+    <rect x="793" y="57" width="9"  height="7"/>
+    <rect x="793" y="70" width="9"  height="7"/>
+    <rect x="793" y="83" width="9"  height="7"/>
+    <rect x="833" y="61" width="10" height="7"/>
+    <rect x="833" y="74" width="10" height="7"/>
+    <rect x="833" y="87" width="5"  height="5"/>
+
+    <!-- 5-tier pagoda — taller, with finial and spire -->
+    <path d="M878,95V82H972V95"/>
+    <path d="M872,78L878,82H972L978,78"/>
+    <path d="M886,82V68H964V82"/>
+    <path d="M880,64L886,68H964L970,64"/>
+    <path d="M894,68V56H956V68"/>
+    <path d="M888,52L894,56H956L962,52"/>
+    <path d="M901,56V45H949V56"/>
+    <path d="M895,41L901,45H949L955,41"/>
+    <path d="M908,45V35H942V45"/>
+    <path d="M903,31L908,35H942L947,31"/>
+    <path d="M925,35V20M920,26L925,20L930,26"/>
+    <circle cx="925" cy="20" r="2"/>
+
+    <!-- Tube houses cluster 4 -->
+    <path d="M985,95V60H1005V95"/>
+    <path d="M1005,95V54H1026V95"/>
+    <path d="M1026,95V64H1044V95"/>
+    <path d="M1044,95V57H1066V95"/>
+    <path d="M1066,95V68H1084V95"/>
+    <rect x="988"  y="66" width="9"  height="7"/>
+    <rect x="988"  y="79" width="9"  height="7"/>
+    <rect x="1008" y="61" width="9"  height="7"/>
+    <rect x="1008" y="74" width="9"  height="7"/>
+    <rect x="1008" y="87" width="9"  height="7"/>
+    <rect x="1047" y="64" width="10" height="7"/>
+    <rect x="1047" y="77" width="10" height="7"/>
+    <rect x="1047" y="90" width="5"  height="4"/>
+
+    <!-- Temple gate / Tam Quan — curved Vietnamese double-eave -->
+    <path d="M1092,95V66H1188V95"/>
+    <path d="M1086,66C1104,58 1122,54 1140,52C1158,54 1176,58 1194,66"/>
+    <path d="M1098,54C1113,48 1127,45 1140,44C1153,45 1167,48 1182,54"/>
+    <path d="M1086,66L1081,61"/>
+    <path d="M1194,66L1199,61"/>
+    <path d="M1098,54L1094,49"/>
+    <path d="M1182,54L1186,49"/>
+    <path d="M1099,95V78Q1111,70 1123,78V95"/>
+    <path d="M1129,95V74Q1140,66 1151,74V95"/>
+    <path d="M1157,95V78Q1169,70 1181,78V95"/>
+
+    <!-- Tube houses — right cluster -->
+    <path d="M1196,95V58H1216V95"/>
+    <path d="M1216,95V66H1234V95"/>
+    <path d="M1234,95V52H1256V95"/>
+    <path d="M1256,95V62H1274V95"/>
+    <path d="M1274,95V55H1296V95"/>
+    <path d="M1296,95V68H1314V95"/>
+    <path d="M1314,95V58H1334V95"/>
+    <path d="M1334,95V64H1352V95"/>
+    <path d="M1352,95V54H1374V95"/>
+    <path d="M1374,95V70H1392V95"/>
+    <path d="M1392,95V62H1412V95"/>
+    <path d="M1412,95V72H1430V95"/>
+    <path d="M1430,95V58H1440V95"/>
+    <rect x="1199" y="64" width="9"  height="7"/>
+    <rect x="1199" y="77" width="9"  height="7"/>
+    <rect x="1237" y="59" width="10" height="7"/>
+    <rect x="1237" y="72" width="10" height="7"/>
+    <rect x="1237" y="85" width="5"  height="4"/>
+    <rect x="1278" y="62" width="9"  height="7"/>
+    <rect x="1278" y="75" width="9"  height="7"/>
+    <rect x="1278" y="88" width="9"  height="7"/>
+    <rect x="1317" y="64" width="9"  height="7"/>
+    <rect x="1317" y="77" width="9"  height="7"/>
+    <rect x="1355" y="61" width="10" height="7"/>
+    <rect x="1355" y="74" width="10" height="7"/>
+    <rect x="1355" y="87" width="5"  height="4"/>
+    <rect x="1395" y="69" width="9"  height="7"/>
+    <rect x="1395" y="82" width="9"  height="7"/>
+    <rect x="1415" y="79" width="9"  height="7"/>
+
+  </g>
+</svg>

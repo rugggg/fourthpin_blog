@@ -836,22 +836,107 @@ footer::before {
   }
 }
 
-/* ── 22. Brewing status ─────────────────────────────────────── */
-/* Shown on homepage — update the HTML when you change beans */
-.brewing-status {
-  display: flex;
-  align-items: center;
-  gap: var(--sp-2);
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  color: var(--text-muted);
-  letter-spacing: 0.05em;
-  margin-top: var(--sp-5);
-  margin-bottom: 0;
+/* ── 22. Brewing / coffee stain ─────────────────────────────── */
+/*
+   The stain is painted on the page background via body::before.
+   The .brewing-card text sits over it, fully transparent-backed.
+   Both are pointer-events: none — nothing is blocked.
+   Update the HTML in every page when you switch bags.
+*/
+
+/* Coffee ring stain seeping in from the top-right corner */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 290px;
+  height: 270px;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    /* Ring edge — where coffee dried and concentrated */
+    radial-gradient(ellipse 50% 46% at 60% 34%,
+      transparent 30%,
+      rgba(88,46,8,0.21) 34%, rgba(88,46,8,0.13) 41%,
+      rgba(88,46,8,0.03) 53%, transparent 63%),
+    /* Puddle pooling around the ring */
+    radial-gradient(ellipse 80% 64% at 60% 34%,
+      rgba(88,46,8,0.02) 0%, rgba(88,46,8,0.07) 44%,
+      rgba(88,46,8,0.02) 63%, transparent 75%),
+    /* Drip running down the right edge */
+    radial-gradient(ellipse 11% 28% at 96% 54%,
+      rgba(88,46,8,0.1) 0%, rgba(88,46,8,0.03) 58%, transparent 76%),
+    /* Corner bleed — the spill source */
+    radial-gradient(ellipse 58% 40% at 92% 8%,
+      rgba(88,46,8,0.12) 0%, transparent 56%);
 }
 
-.brewing-bean {
-  color: var(--accent-2);   /* hanoi teal — feels right for coffee */
+/* Brewing text — transparent background, floats over the stain */
+.brewing-card {
+  position: fixed;
+  top: var(--sp-4);
+  right: var(--sp-4);
+  z-index: 50;
+  pointer-events: none;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0.5rem 0.65rem;
+  width: 138px;
+  /* slight tilt like a handwritten label */
+  transform: rotate(0.8deg);
+  transform-origin: top right;
+}
+
+.brewing-card-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: rgba(80,42,8,0.52);
+  border-bottom: 1px solid rgba(88,46,8,0.18);
+  padding-bottom: 0.28em;
+  margin-bottom: 0.38em;
+}
+
+.brewing-card-bean {
+  display: block;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.82rem;
+  color: rgba(38,18,4,0.88);
+  line-height: 1.25;
+  margin-bottom: 0.2em;
+}
+
+.brewing-card-roaster {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: rgba(50,25,6,0.62);
+  letter-spacing: 0.03em;
+}
+
+.brewing-card-process {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  color: rgba(50,25,6,0.42);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-top: 0.3em;
+}
+
+@media (max-width: 600px) {
+  body::before {
+    width: 200px;
+    height: 190px;
+  }
+  .brewing-card {
+    width: 114px;
+  }
 }
 
 /* ── 23. Print ──────────────────────────────────────────────── */
@@ -859,7 +944,9 @@ footer::before {
   nav,
   .back-link,
   .post-nav,
-  footer { display: none; }
+  footer,
+  body::before,
+  .brewing-card { display: none; }
 
   body {
     background: white;

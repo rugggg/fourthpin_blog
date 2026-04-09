@@ -1111,6 +1111,146 @@ footer::before {
   }
 }
 
+/* ── 24. Vocab card — HUD overlay (bottom-left) ─────────────── */
+/*
+   Teal bookend to the orange brewing card.
+   Update word/roman/def in every HTML file when you learn something new.
+   pointer-events: none — never blocks anything.
+*/
+
+@keyframes vocab-glow {
+  0%, 100% { filter: drop-shadow(0 0 4px rgba(46, 110, 106, 0.45))
+                     drop-shadow(0 0 12px rgba(46, 110, 106, 0.2)); }
+  50%       { filter: drop-shadow(0 0 8px rgba(46, 110, 106, 0.85))
+                     drop-shadow(0 0 28px rgba(46, 110, 106, 0.45)); }
+}
+
+.vocab-card {
+  position: fixed;
+  bottom: var(--sp-4);
+  left: var(--sp-4);
+  z-index: 50;
+  pointer-events: none;
+  width: 164px;
+
+  /* Teal scan-line tint */
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent 0px, transparent 3px,
+      rgba(46, 110, 106, 0.028) 3px, rgba(46, 110, 106, 0.028) 4px
+    ),
+    rgba(46, 110, 106, 0.06);
+
+  /* Flipped asymmetry: thick on bottom + right (mirror of brewing card) */
+  border-top:    1.5px solid rgba(46, 110, 106, 0.42);
+  border-left:   1.5px solid rgba(46, 110, 106, 0.42);
+  border-bottom: 3px solid var(--accent-2);
+  border-right:  3px solid var(--accent-2);
+
+  /* Same double diagonal cut as brewing card */
+  clip-path: polygon(
+    0 0,
+    calc(100% - 13px) 0,
+    100% 13px,
+    100% 100%,
+    13px 100%,
+    0 calc(100% - 13px)
+  );
+
+  padding: 0 0.65rem 0.65rem;
+
+  /* Offset by half the brewing card cycle so they pulse alternately */
+  animation: vocab-glow 3.5s ease-in-out infinite;
+  animation-delay: 1.75s;
+}
+
+/* Top-left inner corner bracket */
+.vocab-card::before {
+  content: '';
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  width: 9px;
+  height: 9px;
+  border-top:  1.5px solid rgba(46, 110, 106, 0.55);
+  border-left: 1.5px solid rgba(46, 110, 106, 0.55);
+}
+
+/* Bottom-right inner corner bracket */
+.vocab-card::after {
+  content: '';
+  position: absolute;
+  bottom: 6px;
+  right:  6px;
+  width: 9px;
+  height: 9px;
+  border-bottom: 1.5px solid rgba(46, 110, 106, 0.55);
+  border-right:  1.5px solid rgba(46, 110, 106, 0.55);
+}
+
+/* Teal header band */
+.vocab-card-label {
+  display: block;
+  background: rgba(46, 110, 106, 0.11);
+  margin: 0 -0.65rem 0.48em;
+  padding: 0.3em 0.65rem;
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent-2);
+  border-bottom: 1px solid rgba(46, 110, 106, 0.22);
+}
+
+.vocab-card-label::before {
+  content: '▸';
+  margin-right: 0.38em;
+}
+
+.vocab-card-label::after {
+  content: ' ──';
+  opacity: 0.35;
+  letter-spacing: 0;
+}
+
+/* The word itself — large, serif italic, full teal */
+.vocab-card-word {
+  display: block;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--accent-2);
+  line-height: 1.15;
+  margin-bottom: 0.15em;
+}
+
+/* Romanization / pronunciation */
+.vocab-card-roman {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  color: rgba(46, 110, 106, 0.65);
+  letter-spacing: 0.06em;
+  margin-bottom: 0.3em;
+}
+
+/* English definition */
+.vocab-card-def {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  color: rgba(46, 110, 106, 0.82);
+  line-height: 1.35;
+}
+
+@media (max-width: 600px) {
+  .vocab-card {
+    width: 142px;
+  }
+}
+
 /* ── 23. Print ──────────────────────────────────────────────── */
 @media print {
   nav,

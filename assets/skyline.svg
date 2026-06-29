@@ -165,7 +165,5 @@
     <rect x="1369" y="64" width="9" height="7"/>
     <rect x="1407" y="61" width="9" height="7"/>
 
-    <!-- Temple gate — Saigon -->
-    <path d="M1058,95V66H1152V95" opacity="0"/>
   </g>
 </svg>

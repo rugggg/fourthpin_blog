@@ -55,7 +55,7 @@ def _brewing_inner() -> str:
         f'      <span class="brewing-card-bean">{BREWING["bean"]}</span>\n'
         f'      <span class="brewing-card-roaster">{BREWING["roaster"]}</span>\n'
         f'      <span class="brewing-card-process">{BREWING["process"]}</span>\n'
-        '      <a href="/brewing.html" class="hud-log-link hud-log-link--brewing">log →</a>\n'
+        '      <a href="/brewing.html" class="hud-log-link hud-log-link--brewing">Brew Log →</a>\n'
         '    </div>'
     )
 
@@ -95,9 +95,25 @@ _VOCAB_RE = re.compile(
 )
 _HUD_STACK_RE = re.compile(
     r'  <!--[^\n]*(?:build\.py|BREWING|VOCAB|fourthpin:hud)[^\n]*-->\n'
-    r'  <aside class="hud-stack">.*?</aside>\n?',
+    r'  <aside class="hud-stack"[^>]*>.*?</aside>\n?',
     re.DOTALL,
 )
+_HUD_ORPHAN_RE = re.compile(
+    r'  <aside class="hud-stack"[^>]*>.*?</aside>\n?',
+    re.DOTALL,
+)
+
+
+def _strip_all_hud(html: str) -> str:
+    """Remove every HUD stack and legacy card block (may take several passes)."""
+    prev = None
+    while html != prev:
+        prev = html
+        html = _HUD_STACK_RE.sub("", html)
+        html = _HUD_ORPHAN_RE.sub("", html)
+        html = _BREWING_RE.sub("", html)
+        html = _VOCAB_RE.sub("", html)
+    return re.sub(r"\n{3,}", "\n\n", html)
 
 
 def update_hud_cards() -> None:
@@ -109,10 +125,7 @@ def update_hud_cards() -> None:
     changed = 0
     for path in pages:
         original = path.read_text(encoding="utf-8")
-        updated = _HUD_STACK_RE.sub("", original)
-        updated = _BREWING_RE.sub("", updated)
-        updated = _VOCAB_RE.sub("", updated)
-        updated = re.sub(r"\n{3,}", "\n\n", updated)
+        updated = _strip_all_hud(original)
         updated = updated.replace("</body>", f"{stack}</body>", 1)
         if updated != original:
             path.write_text(updated, encoding="utf-8")
@@ -252,14 +265,14 @@ def _brewing_history_html(history: list[dict]) -> str:
 
     content = f"""
       <div class="archive-header">
-        <h1>Brewing log</h1>
+        <h1>Brew Log</h1>
         <p>Beans on rotation. Newest first. <a href="/words.html">Word log \u2192</a></p>
       </div>
 {rows}
 """
     return _PAGE_SHELL.format(
-        title="Brewing log",
-        description="Coffee brewing history on fourthpin.",
+        title="Brew Log",
+        description="Coffee brew history on fourthpin.",
         css_prefix="",
         content=content,
         hud_stack=_hud_stack_html(),
@@ -292,7 +305,7 @@ def _vocab_history_html(history: list[dict]) -> str:
     content = f"""
       <div class="archive-header">
         <h1>Word log</h1>
-        <p>Vietnamese words, day by day. Newest first. <a href="/brewing.html">Brewing log \u2192</a></p>
+        <p>Vietnamese words, day by day. Newest first. <a href="/brewing.html">Brew Log \u2192</a></p>
       </div>
 {rows}
 """

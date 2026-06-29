@@ -1,0 +1,32 @@
+---
+description: fourthpin design system — tokens, type, spacing from style.css
+globs: style.css,**/*.html
+alwaysApply: false
+---
+
+# fourthpin design tokens
+
+Canonical source: `style.css` `:root`.
+
+## Colors
+- `--bg` #F2EDE4 — bone paper
+- `--accent` #A83A0A — NASA rust (primary emphasis)
+- `--accent-2` #2E6E6A — Hanoi teal (vocab / secondary)
+- `--text` #1C1A17 — body
+- `--text-muted` #6B6460 — metadata (≥4.5:1 on bg)
+- `--border` #C9C3B8
+
+## Typography
+- Serif body/display: `--font-serif` (IBM Plex Serif)
+- UI/nav/meta: `--font-mono` (IBM Plex Mono)
+- Sans: `--font-sans` (IBM Plex Sans)
+- Scale: `--text-xs` through `--text-4xl` (fluid clamp on large sizes)
+
+## Spacing
+4pt grid: `--sp-1` (0.25rem) through `--sp-16` (4rem).
+
+## Rules
+- Grep `style.css` for existing patterns before adding classes
+- No inline styles; no new CSS files
+- HUD: one `.hud-stack` per page, fixed top-right
+- Invoke `/design-critic` after significant visual changes

@@ -726,14 +726,14 @@ footer {
   color: var(--text-muted);
 }
 
-/* 90s anime painted footer panorama */
+/* Minimal horizon mark */
 footer::before {
   content: '';
   display: block;
   width: 100%;
-  height: 108px;
+  height: 64px;
   margin-bottom: var(--sp-5);
-  background: url('assets/skyline.svg') no-repeat center bottom / 100% 108px;
+  background: url('assets/skyline.svg') no-repeat center bottom / 100% 64px;
   pointer-events: none;
 }
 

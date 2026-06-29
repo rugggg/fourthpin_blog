@@ -28,7 +28,7 @@ jobs:
           pip install -q markdown pyyaml
           python3 build.py
           mkdir -p _site/posts
-          cp index.html about.html blog.html photos.html 404.html style.css robots.txt CNAME _site/
+          cp index.html about.html blog.html photos.html brewing.html words.html 404.html style.css robots.txt CNAME _site/
           cp -r assets _site/
           cp posts/20*.html _site/posts/ 2>/dev/null || true
 

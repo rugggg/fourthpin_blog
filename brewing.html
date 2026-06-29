@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>404 — fourthpin</title>
+  <title>Brewing log — fourthpin</title>
+  <meta name="description" content="Coffee brewing history on fourthpin.">
   <link rel="stylesheet" href="style.css">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 </head>
@@ -20,18 +21,26 @@
     </header>
 
     <main>
-      <div class="error-page">
-        <span class="error-code">404</span>
-        <h1>Nothing here.</h1>
-        <p>This page doesn't exist, or it moved without leaving a note.</p>
-        <p><a href="/">Go back home →</a></p>
+
+      <div class="archive-header">
+        <h1>Brewing log</h1>
+        <p>Beans on rotation. Newest first. <a href="/words.html">Word log →</a></p>
       </div>
+      <ul class="history-list history-list--brewing">
+        <li class="is-current">
+          <span class="date">2026-06-29</span>
+          <div class="history-detail">
+            <span class="history-primary">Ethiopia Yirgacheffe</span>
+            <span class="history-secondary">Onyx Coffee Lab · Natural</span>
+          </div>
+        </li>
+      </ul>
+
     </main>
 
     <footer>
       <div class="footer-inner">
         <span>© 2026 fourthpin</span>
-
       </div>
     </footer>
 
@@ -44,12 +53,14 @@
       <span class="brewing-card-bean">Ethiopia Yirgacheffe</span>
       <span class="brewing-card-roaster">Onyx Coffee Lab</span>
       <span class="brewing-card-process">Natural</span>
+      <a href="/brewing.html" class="hud-log-link hud-log-link--brewing">log →</a>
     </div>
     <div class="vocab-card">
       <span class="vocab-card-label">từ hôm nay</span>
       <span class="vocab-card-word">xin chào</span>
       <span class="vocab-card-roman">sin chow</span>
       <span class="vocab-card-def">hello / greetings</span>
+      <a href="/words.html" class="hud-log-link hud-log-link--vocab">log →</a>
     </div>
   </aside>
   <!-- edit BREWING and VOCAB in build.py → python3 build.py -->

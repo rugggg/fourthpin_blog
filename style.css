@@ -777,6 +777,127 @@ footer::before {
   font-style: italic;
 }
 
+.archive-header p a {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-style: normal;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  text-decoration: none;
+}
+
+.archive-header p a:hover {
+  color: var(--accent);
+}
+
+/* ── 18b. HUD history logs ──────────────────────────────────── */
+.history-empty {
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.history-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.history-list li {
+  display: grid;
+  grid-template-columns: 6.5rem 1fr;
+  gap: var(--sp-2) var(--sp-5);
+  padding: var(--sp-4) 0;
+  border-bottom: 1px solid var(--border);
+  align-items: baseline;
+}
+
+.history-list li:first-child {
+  border-top: 1px solid var(--border);
+}
+
+.history-list .date {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.history-primary {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: var(--text-base);
+  color: var(--text);
+  line-height: 1.25;
+}
+
+.history-list--brewing .history-primary {
+  color: var(--accent);
+}
+
+.history-primary--vocab {
+  color: var(--accent-2);
+  font-style: italic;
+}
+
+.history-secondary {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  letter-spacing: 0.03em;
+  margin-top: 0.2em;
+}
+
+.history-def {
+  display: block;
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  margin-top: 0.25em;
+  line-height: 1.4;
+}
+
+.history-list li.is-current .date::after {
+  content: ' · now';
+  color: var(--accent);
+}
+
+.history-list--vocab li.is-current .date::after {
+  color: var(--accent-2);
+}
+
+.hud-log-link {
+  display: block;
+  pointer-events: auto;
+  margin-top: 0.45em;
+  font-family: var(--font-mono);
+  font-size: 0.52rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  opacity: 0.55;
+  transition: opacity 0.15s ease-out;
+}
+
+.hud-log-link--brewing {
+  color: var(--accent);
+}
+
+.hud-log-link--vocab {
+  color: var(--accent-2);
+}
+
+.hud-log-link:hover {
+  opacity: 1;
+}
+
+@media (max-width: 480px) {
+  .history-list li {
+    grid-template-columns: 1fr;
+    gap: var(--sp-1);
+  }
+}
+
 /* ── 18. 404 page ───────────────────────────────────────────── */
 .error-page {
   text-align: center;

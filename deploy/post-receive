@@ -1,24 +1,27 @@
 #!/bin/bash
-# Git post-receive hook — deploys the site on every push
-#
-# Setup:
-#   1. On your server, create a bare repo:
-#      git init --bare /home/deploy/yoursite.git
-#
-#   2. Copy this file to the bare repo's hooks directory:
-#      cp post-receive /home/deploy/yoursite.git/hooks/post-receive
-#      chmod +x /home/deploy/yoursite.git/hooks/post-receive
-#
-#   3. On your local machine, add the server as a remote:
-#      git remote add origin ssh://user@YOUR_SERVER_IP/home/deploy/yoursite.git
-#
-#   4. Deploy by pushing:
-#      git push origin main
-#
-# The hook fires automatically and copies files to the web root.
+# Git post-receive hook — deploys the site on every push to main.
+set -euo pipefail
 
-GIT_WORK_TREE=/var/www/yoursite git checkout -f main
+WEB_ROOT="${WEB_ROOT:-/var/www/fourthpin}"
+BRANCH="${DEPLOY_BRANCH:-main}"
+
+export GIT_WORK_TREE="$WEB_ROOT"
+git checkout -f "$BRANCH"
+
+cd "$WEB_ROOT"
+
+if command -v python3 >/dev/null 2>&1 && [[ -f build.py ]]; then
+  if python3 -c "import markdown, yaml" 2>/dev/null; then
+    python3 build.py
+  else
+    echo "  (skipped build.py — pip install markdown pyyaml)"
+  fi
+fi
+
+if id www-data >/dev/null 2>&1; then
+  chown -R www-data:www-data "$WEB_ROOT"
+fi
 
 echo ""
-echo "✓ Deployed to /var/www/yoursite"
+echo "✓ Deployed $BRANCH → $WEB_ROOT"
 echo ""

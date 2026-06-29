@@ -8,6 +8,7 @@ DAILY USE:  edit BREWING or VOCAB below, then run:
 NEW POST:   drop a .md file in posts/_md/YYYY-MM-DD-slug.md
             with YAML frontmatter, then run:
               python3 build.py
+            (rebuilds the post HTML and refreshes blog + home lists)
 
 Setup (one time):
               pip install markdown pyyaml
@@ -110,7 +111,7 @@ _POST_LAYOUT = """\
   <meta property="og:description" content="{description}">
   <meta property="og:type" content="article">
   <link rel="stylesheet" href="../style.css">
-  <link rel="icon" href="../assets/favicon.ico">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 </head>
 <body>
   <div class="container">
@@ -186,22 +187,25 @@ def _parse_frontmatter(text: str) -> tuple[dict, str]:
     return meta, text[end + 4:].lstrip("\n")
 
 
-def build_posts() -> None:
+def build_posts() -> list[dict]:
     """Convert posts/_md/*.md → posts/*.html with auto prev/next links."""
+    posts = _collect_posts()
+    if not posts:
+        print("  No .md files in posts/_md/ — nothing to build")
+        return []
+
     try:
         import markdown as md_lib
         import yaml  # noqa: F401
     except ImportError:
         print("  Skipping posts — run:  pip install markdown pyyaml")
-        return
+        return posts
 
     md_dir = ROOT / "posts" / "_md"
-    md_dir.mkdir(parents=True, exist_ok=True)
-
     files = sorted(md_dir.glob("*.md"))
     if not files:
         print("  No .md files in posts/_md/ — nothing to build")
-        return
+        return []
 
     # First pass — read all frontmatter so we can wire prev/next
     all_meta: list[dict] = []
@@ -260,6 +264,81 @@ def build_posts() -> None:
         print(f"  Built  posts/{src.stem}.html")
 
     print(f"  {built} post(s) built")
+    return _collect_posts()
+
+
+# ── Post index lists (blog.html + index.html) ─────────────────────
+
+_BLOG_LIST_RE = re.compile(
+    r'      <!-- build\.py: post list -->\n'
+    r'      <ul class="post-list">.*?</ul>',
+    re.DOTALL,
+)
+_INDEX_LIST_RE = re.compile(
+    r'        <!-- build\.py: recent posts -->\n'
+    r'        <ul class="post-list">.*?</ul>',
+    re.DOTALL,
+)
+
+
+def _post_list_items(posts: list[dict], indent: str, *, href_prefix: str) -> str:
+    if not posts:
+        return f'{indent}<ul class="post-list">\n{indent}</ul>'
+    lines = [f"{indent}<ul class=\"post-list\">"]
+    for post in posts:
+        lines.append(f"{indent}  <li>")
+        lines.append(f'{indent}    <span class="date">{post["date_iso"]}</span>')
+        lines.append(
+            f'{indent}    <a href="{href_prefix}{post["slug"]}.html">{post["title"]}</a>'
+        )
+        lines.append(f"{indent}  </li>")
+    lines.append(f"{indent}</ul>")
+    return "\n".join(lines)
+
+
+def update_post_lists(posts: list[dict] | None = None) -> None:
+    """Refresh blog archive and home recent-post lists from markdown metadata."""
+    if posts is None:
+        posts = _collect_posts()
+
+    blog_path = ROOT / "blog.html"
+    blog_html = blog_path.read_text(encoding="utf-8")
+    blog_block = (
+        "      <!-- build.py: post list -->\n"
+        + _post_list_items(posts, "      ", href_prefix="posts/")
+    )
+    blog_updated = _BLOG_LIST_RE.sub(blog_block, blog_html)
+    if blog_updated != blog_html:
+        blog_path.write_text(blog_updated, encoding="utf-8")
+        print(f"  blog.html → {len(posts)} post(s)")
+
+    index_path = ROOT / "index.html"
+    index_html = index_path.read_text(encoding="utf-8")
+    recent = posts[:5]
+    index_block = (
+        "        <!-- build.py: recent posts -->\n"
+        + _post_list_items(recent, "        ", href_prefix="posts/")
+    )
+    index_updated = _INDEX_LIST_RE.sub(index_block, index_html)
+    if index_updated != index_html:
+        index_path.write_text(index_updated, encoding="utf-8")
+        print(f"  index.html → {len(recent)} recent post(s)")
+
+
+def _collect_posts() -> list[dict]:
+    md_dir = ROOT / "posts" / "_md"
+    if not md_dir.is_dir():
+        return []
+
+    posts: list[dict] = []
+    for src in sorted(md_dir.glob("*.md"), reverse=True):
+        meta, _ = _parse_frontmatter(src.read_text(encoding="utf-8"))
+        posts.append({
+            "slug":     src.stem,
+            "date_iso": src.stem[:10],
+            "title":    meta.get("title", src.stem),
+        })
+    return posts
 
 
 # ── Entry point ───────────────────────────────────────────────────
@@ -270,5 +349,8 @@ if __name__ == "__main__":
     update_hud_cards()
     print()
     print("› Posts")
-    build_posts()
+    posts = build_posts()
+    print()
+    print("› Post lists")
+    update_post_lists(posts)
     print("\nDone ✓")

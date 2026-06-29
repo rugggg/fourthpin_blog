@@ -1,3 +1,7 @@
+# Python
+__pycache__/
+*.pyc
+
 # Skills / AI tooling (installed locally, not part of the site)
 .agents/
 .claude/

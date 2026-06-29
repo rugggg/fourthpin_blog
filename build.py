@@ -31,9 +31,9 @@ BREWING = {
 }
 
 VOCAB = {
-    "word":  "xin chào",
-    "roman": "sin chow",
-    "def":   "hello / greetings",
+    "word":  "ván trượt",
+    "roman": "vahn truht",
+    "def":   "surfboard / skateboard",
 }
 
 # ══════════════════════════════════════════════════════════════════

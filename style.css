@@ -964,7 +964,28 @@ footer::before {
   }
 }
 
-/* ── 22. Brewing card — HUD overlay ────────────────────────── */
+/* ── 22. HUD stack — right-side overlay ─────────────────────── */
+
+.hud-stack {
+  position: fixed;
+  top: var(--sp-4);
+  right: var(--sp-4);
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--sp-3);
+  width: 164px;
+  pointer-events: none;
+}
+
+@media (max-width: 600px) {
+  .hud-stack {
+    width: 142px;
+  }
+}
+
+/* ── 23. Brewing card ───────────────────────────────────────── */
 @keyframes hud-glow {
   0%, 100% { filter: drop-shadow(0 0 4px rgba(168, 58, 10, 0.45))
                      drop-shadow(0 0 12px rgba(168, 58, 10, 0.2)); }
@@ -980,12 +1001,9 @@ footer::before {
 */
 
 .brewing-card {
-  position: fixed;
-  top: var(--sp-4);
-  right: var(--sp-4);
-  z-index: 50;
+  position: relative;
+  width: 100%;
   pointer-events: none;
-  width: 164px;
 
   /* Warm translucent tint + orange scan lines — blends with page */
   background:
@@ -1106,15 +1124,16 @@ footer::before {
 }
 
 @media (max-width: 600px) {
-  .brewing-card {
-    width: 142px;
+  .hud-stack .brewing-card,
+  .hud-stack .vocab-card {
+    width: 100%;
   }
 }
 
-/* ── 24. Vocab card — HUD overlay (bottom-left) ─────────────── */
+/* ── 24. Vocab card ─────────────────────────────────────────── */
 /*
    Teal bookend to the orange brewing card.
-   Update word/roman/def in every HTML file when you learn something new.
+   Stacked with brewing in .hud-stack (top-right).
    pointer-events: none — never blocks anything.
 */
 
@@ -1126,12 +1145,9 @@ footer::before {
 }
 
 .vocab-card {
-  position: fixed;
-  bottom: var(--sp-4);
-  left: var(--sp-4);
-  z-index: 50;
+  position: relative;
+  width: 100%;
   pointer-events: none;
-  width: 164px;
 
   /* Teal scan-line tint */
   background:
@@ -1245,19 +1261,13 @@ footer::before {
   line-height: 1.35;
 }
 
-@media (max-width: 600px) {
-  .vocab-card {
-    width: 142px;
-  }
-}
-
-/* ── 23. Print ──────────────────────────────────────────────── */
+/* ── 25. Print ──────────────────────────────────────────────── */
 @media print {
   nav,
   .back-link,
   .post-nav,
   footer,
-  .brewing-card { display: none; }
+  .hud-stack { display: none; }
 
   body {
     background: white;

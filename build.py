@@ -43,39 +43,52 @@ ROOT = Path(__file__).parent
 
 # ── HUD card HTML fragments ───────────────────────────────────────
 
-def _brewing_html() -> str:
+def _brewing_inner() -> str:
     return (
-        '  <!-- edit BREWING in build.py → python3 build.py -->\n'
-        '  <div class="brewing-card">\n'
-        '    <span class="brewing-card-label">now brewing</span>\n'
-        f'    <span class="brewing-card-bean">{BREWING["bean"]}</span>\n'
-        f'    <span class="brewing-card-roaster">{BREWING["roaster"]}</span>\n'
-        f'    <span class="brewing-card-process">{BREWING["process"]}</span>\n'
-        '  </div>'
+        '    <div class="brewing-card">\n'
+        '      <span class="brewing-card-label">now brewing</span>\n'
+        f'      <span class="brewing-card-bean">{BREWING["bean"]}</span>\n'
+        f'      <span class="brewing-card-roaster">{BREWING["roaster"]}</span>\n'
+        f'      <span class="brewing-card-process">{BREWING["process"]}</span>\n'
+        '    </div>'
     )
 
 
-def _vocab_html() -> str:
+def _vocab_inner() -> str:
     return (
-        '  <!-- edit VOCAB in build.py → python3 build.py -->\n'
-        '  <div class="vocab-card">\n'
-        '    <span class="vocab-card-label">từ hôm nay</span>\n'
-        f'    <span class="vocab-card-word">{VOCAB["word"]}</span>\n'
-        f'    <span class="vocab-card-roman">{VOCAB["roman"]}</span>\n'
-        f'    <span class="vocab-card-def">{VOCAB["def"]}</span>\n'
-        '  </div>'
+        '    <div class="vocab-card">\n'
+        '      <span class="vocab-card-label">từ hôm nay</span>\n'
+        f'      <span class="vocab-card-word">{VOCAB["word"]}</span>\n'
+        f'      <span class="vocab-card-roman">{VOCAB["roman"]}</span>\n'
+        f'      <span class="vocab-card-def">{VOCAB["def"]}</span>\n'
+        '    </div>'
     )
 
 
-# Match any existing card block (comment + div) regardless of prior comment text
+def _hud_stack_html() -> str:
+    return (
+        '  <!-- edit BREWING and VOCAB in build.py → python3 build.py -->\n'
+        '  <aside class="hud-stack" aria-hidden="true">\n'
+        f'{_brewing_inner()}\n'
+        f'{_vocab_inner()}\n'
+        '  </aside>'
+    )
+
+
+# Legacy single-card matchers (for migrating older HTML)
 _BREWING_RE = re.compile(
     r'  <!--[^\n]*(?:build\.py|switch bags|BREWING)[^\n]*-->\n'
-    r'  <div class="brewing-card">.*?</div>',
+    r'  <div class="brewing-card">.*?</div>\n?',
     re.DOTALL,
 )
 _VOCAB_RE = re.compile(
     r'  <!--[^\n]*(?:build\.py|new word|VOCAB)[^\n]*-->\n'
-    r'  <div class="vocab-card">.*?</div>',
+    r'  <div class="vocab-card">.*?</div>\n?',
+    re.DOTALL,
+)
+_HUD_STACK_RE = re.compile(
+    r'  <!--[^\n]*(?:build\.py|BREWING|VOCAB|fourthpin:hud)[^\n]*-->\n'
+    r'  <aside class="hud-stack">.*?</aside>\n?',
     re.DOTALL,
 )
 
@@ -85,11 +98,15 @@ def update_hud_cards() -> None:
     pages = list(ROOT.glob("*.html")) + list((ROOT / "posts").glob("*.html"))
     pages = [p for p in pages if not p.name.startswith("_")]
 
+    stack = _hud_stack_html() + "\n"
     changed = 0
     for path in pages:
         original = path.read_text(encoding="utf-8")
-        updated  = _BREWING_RE.sub(_brewing_html(), original)
-        updated  = _VOCAB_RE.sub(_vocab_html(), updated)
+        updated = _HUD_STACK_RE.sub("", original)
+        updated = _BREWING_RE.sub("", updated)
+        updated = _VOCAB_RE.sub("", updated)
+        updated = re.sub(r"\n{3,}", "\n\n", updated)
+        updated = updated.replace("</body>", f"{stack}</body>", 1)
         if updated != original:
             path.write_text(updated, encoding="utf-8")
             changed += 1
@@ -159,9 +176,7 @@ _POST_LAYOUT = """\
 
   </div>
 
-{vocab_card}
-
-{brewing_card}
+{hud_stack}
 </body>
 </html>
 """
@@ -254,8 +269,7 @@ def build_posts() -> list[dict]:
             tags_line      = tags_line,
             content        = indented,
             prev_next      = prev_next,
-            vocab_card     = _vocab_html(),
-            brewing_card   = _brewing_html(),
+            hud_stack      = _hud_stack_html(),
         )
 
         out = ROOT / "posts" / src.with_suffix(".html").name

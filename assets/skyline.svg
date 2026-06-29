@@ -1,139 +1,38 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100"
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 64"
      aria-hidden="true" focusable="false">
-  <!-- 90s hand-painted anime background — footer panorama -->
+  <!-- Minimal horizon mark — coastal swell + fourthpin ticks -->
 
   <defs>
-    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%"   stop-color="#8FAEC8"/>
-      <stop offset="42%"  stop-color="#D4B8C4"/>
-      <stop offset="72%"  stop-color="#F0C9A8"/>
-      <stop offset="100%" stop-color="#F2E4D4"/>
-    </linearGradient>
-
-    <radialGradient id="sun-glow" cx="50%" cy="50%" r="50%">
-      <stop offset="0%"   stop-color="#FFE8C8" stop-opacity="0.55"/>
-      <stop offset="55%"  stop-color="#F5C8A0" stop-opacity="0.18"/>
-      <stop offset="100%" stop-color="#F5C8A0" stop-opacity="0"/>
-    </radialGradient>
-
-    <linearGradient id="mt-far" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%"   stop-color="#8E9EB8" stop-opacity="0.55"/>
-      <stop offset="100%" stop-color="#8E9EB8" stop-opacity="0.22"/>
-    </linearGradient>
-
-    <linearGradient id="mt-mid" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%"   stop-color="#6E7F96" stop-opacity="0.72"/>
-      <stop offset="100%" stop-color="#6E7F96" stop-opacity="0.38"/>
-    </linearGradient>
-
-    <linearGradient id="hill" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%"   stop-color="#5E7A58"/>
-      <stop offset="100%" stop-color="#4A6346"/>
+    <linearGradient id="haze" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#2E6E6A" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#2E6E6A" stop-opacity="0.07"/>
     </linearGradient>
   </defs>
 
-  <!-- Sky wash -->
-  <rect width="1440" height="100" fill="url(#sky)"/>
+  <rect width="1440" height="64" fill="url(#haze)"/>
 
-  <!-- Late-afternoon sun -->
-  <ellipse cx="1180" cy="38" rx="78" ry="52" fill="url(#sun-glow)"/>
-  <ellipse cx="1180" cy="38" rx="22" ry="16" fill="#FFE4BE" opacity="0.75"/>
+  <!-- Distant ridge -->
+  <path fill="none" stroke="#2E6E6A" stroke-width="1.25" stroke-linecap="round"
+        opacity="0.20"
+        d="M-8,34 C148,26 312,30 468,24 C624,18 792,28 948,22
+           C1104,16 1268,24 1448,20"/>
 
-  <!-- Distant mountain range — soft painted layers -->
-  <path fill="url(#mt-far)"
-        d="M0,72 C90,58 170,64 260,52 C350,42 430,56 520,48
-           C610,40 700,54 790,46 C880,38 970,52 1060,44
-           C1150,36 1240,50 1330,42 C1380,38 1410,44 1440,48
-           L1440,100 L0,100 Z"/>
+  <!-- Mid swell -->
+  <path fill="none" stroke="#6B6460" stroke-width="1" stroke-linecap="round"
+        opacity="0.32"
+        d="M0,46 C144,42 288,48 432,44 C576,40 720,47 864,43
+           C1008,39 1152,45 1296,41 C1368,39 1416,43 1440,42"/>
 
-  <path fill="url(#mt-mid)"
-        d="M0,82 C120,70 220,76 340,66 C460,56 560,72 680,64
-           C800,56 900,74 1020,66 C1140,58 1240,76 1360,68
-           L1440,72 L1440,100 L0,100 Z"/>
+  <!-- Shore line -->
+  <path fill="none" stroke="#C9C3B8" stroke-width="1" stroke-linecap="round"
+        opacity="0.55"
+        d="M0,54 C240,52 480,55 720,53 C960,51 1200,54 1440,52"/>
 
-  <!-- Cloud cluster — left (cel-shaded, wobbly ink) -->
-  <g>
-    <path fill="#F4EBE3"
-          d="M48,28 C62,18 82,16 98,24 C112,14 136,16 148,30
-             C166,24 186,32 192,48 C206,46 218,58 214,72
-             C220,78 214,86 202,88 L62,88 C46,86 38,74 44,62
-             C36,52 40,36 48,28 Z"/>
-    <path fill="#D8C8BE" opacity="0.65"
-          d="M44,72 C58,78 88,82 128,80 C156,78 178,72 192,64
-             C198,70 204,82 202,88 L62,88 C48,86 42,78 44,72 Z"/>
-    <path fill="none" stroke="#6B5E58" stroke-width="1.1" stroke-linecap="round"
-          opacity="0.45"
-          d="M48,28 C62,18 82,16 98,24 C112,14 136,16 148,30
-             C166,24 186,32 192,48 C206,46 218,58 214,72
-             C220,78 214,86 202,88 M62,88 C46,86 38,74 44,62"/>
+  <!-- fourthpin — four ticks, last one in rust -->
+  <g stroke-linecap="round">
+    <line x1="380" y1="54" x2="380" y2="49" stroke="#C9C3B8" stroke-width="1.5" opacity="0.6"/>
+    <line x1="620" y1="54" x2="620" y2="48" stroke="#6B6460" stroke-width="1.5" opacity="0.45"/>
+    <line x1="860" y1="54" x2="860" y2="49" stroke="#C9C3B8" stroke-width="1.5" opacity="0.6"/>
+    <line x1="1100" y1="54" x2="1100" y2="47" stroke="#A83A0A" stroke-width="1.75" opacity="0.65"/>
   </g>
-
-  <!-- Cloud cluster — center -->
-  <g>
-    <path fill="#F7F0EA"
-          d="M520,22 C538,12 562,10 580,20 C598,10 624,14 636,28
-             C656,22 678,30 684,46 C700,42 714,54 710,68
-             C718,74 712,84 698,86 L532,86 C514,84 506,70 512,58
-             C504,46 510,30 520,22 Z"/>
-    <path fill="#DCCFC6" opacity="0.6"
-          d="M512,64 C540,72 580,74 620,68 C652,64 672,58 684,50
-             C692,58 698,74 698,86 L532,86 C518,84 510,74 512,64 Z"/>
-    <path fill="none" stroke="#6B5E58" stroke-width="1" stroke-linecap="round"
-          opacity="0.4"
-          d="M520,22 C538,12 562,10 580,20 C598,10 624,14 636,28
-             C656,22 678,30 684,46 M512,58 C504,46 510,30 520,22"/>
-  </g>
-
-  <!-- Cloud cluster — right, smaller -->
-  <g opacity="0.92">
-    <path fill="#F0E8E2"
-          d="M930,34 C944,26 964,26 976,34 C990,28 1008,32 1014,44
-             C1028,42 1038,52 1034,62 C1040,68 1034,76 1022,78
-             L938,78 C926,76 920,66 924,56 C918,48 922,38 930,34 Z"/>
-    <path fill="#D4C4BA" opacity="0.55"
-          d="M924,56 C938,62 962,64 982,58 C1000,54 1010,50 1014,44
-             C1020,52 1024,68 1022,78 L938,78 C928,76 922,68 924,56 Z"/>
-    <path fill="none" stroke="#6B5E58" stroke-width="0.9" stroke-linecap="round"
-          opacity="0.35"
-          d="M930,34 C944,26 964,26 976,34 C990,28 1008,32 1014,44"/>
-  </g>
-
-  <!-- Foreground hill + grass -->
-  <path fill="url(#hill)"
-        d="M0,88 C80,78 160,82 240,76 C340,68 420,80 520,74
-           C640,66 740,82 860,76 C980,70 1080,84 1200,78
-           C1300,74 1380,82 1440,86 L1440,100 L0,100 Z"/>
-
-  <!-- Hand-ink grass tufts -->
-  <g fill="none" stroke="#3E5238" stroke-width="1" stroke-linecap="round" opacity="0.55">
-    <path d="M120,90 l-3,-5 1,5 3,-4"/>
-    <path d="M124,91 l2,-6 -1,4 4,-3"/>
-    <path d="M380,87 l-2,-4 2,3 1,-5"/>
-    <path d="M384,88 l3,-5 -2,4 4,-2"/>
-    <path d="M720,89 l-3,-4 1,4 3,-5"/>
-    <path d="M1020,88 l-2,-5 3,4 -1,-4"/>
-    <path d="M1320,90 l2,-5 -1,4 3,-3"/>
-  </g>
-
-  <!-- Lone cedar — classic bg painting silhouette -->
-  <g fill="#3D4F38" stroke="#2E3D2A" stroke-width="0.8" stroke-linejoin="round">
-    <path d="M1288,88 L1290,72 L1292,88 Z"/>
-    <path d="M1282,80 L1290,58 L1298,80 Z"/>
-    <path d="M1276,70 L1290,42 L1304,70 Z"/>
-    <path d="M1270,58 L1290,28 L1310,58 Z"/>
-    <rect x="1288" y="88" width="4" height="7" rx="0.5"/>
-  </g>
-
-  <!-- Distant power lines — subtle 90s urban edge -->
-  <g fill="none" stroke="#5A534E" stroke-width="0.8" stroke-linecap="round" opacity="0.35">
-    <path d="M200,52 L200,88 M196,56 L204,56 M196,64 L204,64"/>
-    <path d="M340,52 L340,88"/>
-    <path d="M200,58 C260,62 320,60 340,58"/>
-    <path d="M200,66 C260,70 320,68 340,66"/>
-  </g>
-
-  <!-- Horizon ink line — slightly imperfect -->
-  <path fill="none" stroke="#4A4540" stroke-width="1" stroke-linecap="round"
-        opacity="0.25"
-        d="M0,94 C240,92 480,95 720,93 C960,91 1200,94 1440,92"/>
 </svg>

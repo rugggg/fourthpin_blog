@@ -14,6 +14,7 @@
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
   <div class="container">
 
     <header>
@@ -25,7 +26,7 @@
       </nav>
     </header>
 
-    <main>
+    <main id="main-content">
 
       <a href="../blog.html" class="back-link">all posts</a>
 
@@ -106,20 +107,22 @@
 
   </div>
 
-  <!-- UPDATE: Change these fields when you learn a new word -->
-  <div class="vocab-card">
-    <span class="vocab-card-label">từ hôm nay</span>
-    <span class="vocab-card-word">xin chào</span>
-    <span class="vocab-card-roman">sin chow</span>
-    <span class="vocab-card-def">hello / greetings</span>
-  </div>
-
-  <!-- UPDATE: Change all three fields below whenever you switch bags -->
-  <div class="brewing-card">
-    <span class="brewing-card-label">now brewing</span>
-    <span class="brewing-card-bean">Ethiopia Yirgacheffe</span>
-    <span class="brewing-card-roaster">Onyx Coffee Lab</span>
-    <span class="brewing-card-process">Natural</span>
-  </div>
+  <!-- edit BREWING and VOCAB in build.py → python3 build.py -->
+  <aside class="hud-stack" aria-label="Status">
+    <div class="brewing-card">
+      <span class="brewing-card-label">now brewing</span>
+      <span class="brewing-card-bean">Ethiopia Yirgacheffe</span>
+      <span class="brewing-card-roaster">Onyx Coffee Lab</span>
+      <span class="brewing-card-process">Natural</span>
+      <a href="/brewing.html" class="hud-log-link hud-log-link--brewing">Brew Log →</a>
+    </div>
+    <div class="vocab-card">
+      <span class="vocab-card-label">từ hôm nay</span>
+      <span class="vocab-card-word">ván trượt</span>
+      <span class="vocab-card-roman">vahn truht</span>
+      <span class="vocab-card-def">surfboard / skateboard</span>
+      <a href="/words.html" class="hud-log-link hud-log-link--vocab">Word Log →</a>
+    </div>
+  </aside>
 </body>
 </html>

@@ -8,6 +8,7 @@
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
   <div class="container">
 
     <header>
@@ -19,7 +20,7 @@
       </nav>
     </header>
 
-    <main>
+    <main id="main-content">
       <div class="error-page">
         <span class="error-code">404</span>
         <h1>Nothing here.</h1>
@@ -31,6 +32,10 @@
     <footer>
       <div class="footer-inner">
         <span>© 2026 fourthpin</span>
+        <span class="footer-links">
+          <a href="brewing.html">Brew Log</a>
+          <a href="words.html">Word Log</a>
+        </span>
 
       </div>
     </footer>
@@ -38,7 +43,7 @@
   </div>
 
   <!-- edit BREWING and VOCAB in build.py → python3 build.py -->
-  <aside class="hud-stack" aria-hidden="true">
+  <aside class="hud-stack" aria-label="Status">
     <div class="brewing-card">
       <span class="brewing-card-label">now brewing</span>
       <span class="brewing-card-bean">Ethiopia Yirgacheffe</span>
@@ -51,7 +56,7 @@
       <span class="vocab-card-word">ván trượt</span>
       <span class="vocab-card-roman">vahn truht</span>
       <span class="vocab-card-def">surfboard / skateboard</span>
-      <a href="/words.html" class="hud-log-link hud-log-link--vocab">log →</a>
+      <a href="/words.html" class="hud-log-link hud-log-link--vocab">Word Log →</a>
     </div>
   </aside>
 </body>

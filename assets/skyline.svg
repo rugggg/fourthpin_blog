@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100"
      aria-hidden="true" focusable="false">
-  <g fill="none" stroke="#6B6460" stroke-width="1" stroke-linecap="round"
+  <g fill="none" stroke="#6B6460" stroke-width="1.2" stroke-linecap="round"
      stroke-linejoin="round" opacity="0.9">
 
     <!-- Ground -->
@@ -11,12 +11,8 @@
     <path d="M32,95 L55,68 L78,50 L102,95" opacity="0.35"/>
     <path d="M88,95 L108,74 L128,58 L152,95" opacity="0.35"/>
 
-    <!-- Beach + surf -->
-    <path d="M0,95 Q60,91 120,93 T240,95" opacity="0.55"/>
-    <path d="M20,94 Q55,92 90,94 T160,93" opacity="0.4"/>
-    <path d="M45,95 Q70,93 95,95" opacity="0.4"/>
-    <!-- surfboard -->
-    <path d="M108,92 Q118,88 128,92" opacity="0.5"/>
+    <!-- Beach -->
+    <path d="M0,95 Q80,82 200,88 T400,95" opacity="0.5"/>
 
     <!-- Palm — LA coast -->
     <path d="M198,95 Q202,72 206,52"/>
@@ -139,31 +135,13 @@
     <!-- Saigon tube houses — right fade -->
     <path d="M1132,95V58H1152V95"/>
     <path d="M1152,95V66H1170V95"/>
-    <path d="M1170,95V52H1192V95"/>
-    <path d="M1192,95V62H1210V95"/>
-    <path d="M1210,95V55H1232V95"/>
-    <path d="M1232,95V68H1250V95"/>
-    <path d="M1250,95V58H1270V95"/>
-    <path d="M1270,95V64H1288V95"/>
-    <path d="M1288,95V54H1310V95"/>
-    <path d="M1310,95V70H1328V95"/>
-    <path d="M1328,95V62H1348V95"/>
-    <path d="M1348,95V72H1366V95"/>
-    <path d="M1366,95V58H1386V95"/>
-    <path d="M1386,95V66H1404V95"/>
-    <path d="M1404,95V54H1426V95"/>
-    <path d="M1426,95V72H1440V95"/>
     <rect x="1135" y="64" width="9" height="7"/>
     <rect x="1135" y="77" width="9" height="7"/>
-    <rect x="1173" y="59" width="10" height="7"/>
-    <rect x="1173" y="72" width="10" height="7"/>
-    <rect x="1213" y="62" width="9" height="7"/>
-    <rect x="1213" y="75" width="9" height="7"/>
-    <rect x="1253" y="64" width="9" height="7"/>
-    <rect x="1291" y="61" width="10" height="7"/>
-    <rect x="1331" y="69" width="9" height="7"/>
-    <rect x="1369" y="64" width="9" height="7"/>
-    <rect x="1407" y="61" width="9" height="7"/>
+    <path d="M1170,95V52H1192V95" opacity="0.7"/>
+    <rect x="1173" y="59" width="10" height="7" opacity="0.7"/>
+    <path d="M1192,95V62H1210V95" opacity="0.55"/>
+    <path d="M1210,95V55H1232V95" opacity="0.4"/>
+    <path d="M1232,95V68H1250V95" opacity="0.25"/>
 
   </g>
 </svg>

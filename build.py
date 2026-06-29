@@ -67,7 +67,7 @@ def _vocab_inner() -> str:
         f'      <span class="vocab-card-word">{VOCAB["word"]}</span>\n'
         f'      <span class="vocab-card-roman">{VOCAB["roman"]}</span>\n'
         f'      <span class="vocab-card-def">{VOCAB["def"]}</span>\n'
-        '      <a href="/words.html" class="hud-log-link hud-log-link--vocab">log →</a>\n'
+        '      <a href="/words.html" class="hud-log-link hud-log-link--vocab">Word Log →</a>\n'
         '    </div>'
     )
 
@@ -75,7 +75,7 @@ def _vocab_inner() -> str:
 def _hud_stack_html() -> str:
     return (
         '  <!-- edit BREWING and VOCAB in build.py → python3 build.py -->\n'
-        '  <aside class="hud-stack" aria-hidden="true">\n'
+        '  <aside class="hud-stack" aria-label="Status">\n'
         f'{_brewing_inner()}\n'
         f'{_vocab_inner()}\n'
         '  </aside>'
@@ -132,6 +132,67 @@ def update_hud_cards() -> None:
             changed += 1
 
     print(f"  HUD cards → {changed} file(s) updated")
+
+    template = ROOT / "posts" / "_template.html"
+    if template.exists():
+        original = template.read_text(encoding="utf-8")
+        updated = _strip_all_hud(original)
+        updated = updated.replace("</body>", f"{stack}</body>", 1)
+        if updated != original:
+            template.write_text(updated, encoding="utf-8")
+            print("  posts/_template.html → HUD updated")
+
+
+_SKIP_RE = re.compile(r'  <a class="skip-link"[^>]*>Skip to content</a>\n?')
+
+
+def update_page_accessibility() -> None:
+    """Add skip link and main landmark id to static HTML pages."""
+    pages = list(ROOT.glob("*.html")) + [ROOT / "posts" / "_template.html"]
+    changed = 0
+    for path in pages:
+        if not path.exists():
+            continue
+        original = path.read_text(encoding="utf-8")
+        updated = _SKIP_RE.sub("", original)
+        updated = updated.replace("<body>\n", f"<body>\n{_SKIP_LINK}", 1)
+        updated = re.sub(r'<main(?![^>]*\bid=)', '<main id="main-content"', updated)
+        if updated != original:
+            path.write_text(updated, encoding="utf-8")
+            changed += 1
+    if changed:
+        print(f"  skip links → {changed} file(s) updated")
+
+
+_FOOTER_LINKS_RE = re.compile(
+    r'        <span class="footer-links">.*?</span>\n',
+    re.DOTALL,
+)
+_FOOTER_LINKS = (
+    '        <span class="footer-links">\n'
+    '          <a href="brewing.html">Brew Log</a>\n'
+    '          <a href="words.html">Word Log</a>\n'
+    '        </span>\n'
+)
+
+
+def update_footer_links() -> None:
+    """Ensure root pages have footer links to log pages."""
+    changed = 0
+    for path in ROOT.glob("*.html"):
+        original = path.read_text(encoding="utf-8")
+        updated = _FOOTER_LINKS_RE.sub("", original)
+        if _FOOTER_LINKS.strip() not in updated:
+            updated = updated.replace(
+                "        <span>© 2026 fourthpin</span>\n",
+                "        <span>© 2026 fourthpin</span>\n" + _FOOTER_LINKS,
+                1,
+            )
+        if updated != original:
+            path.write_text(updated, encoding="utf-8")
+            changed += 1
+    if changed:
+        print(f"  footer links → {changed} file(s) updated")
 
 
 # ── Brewing + vocab history ───────────────────────────────────────
@@ -198,6 +259,9 @@ def sync_histories() -> tuple[list[dict], list[dict]]:
     return brewing, vocab
 
 
+_SKIP_LINK = '  <a class="skip-link" href="#main-content">Skip to content</a>\n'
+
+
 _PAGE_SHELL = """\
 <!DOCTYPE html>
 <html lang="en">
@@ -210,7 +274,7 @@ _PAGE_SHELL = """\
   <link rel="icon" href="{css_prefix}assets/favicon.svg" type="image/svg+xml">
 </head>
 <body>
-  <div class="container">
+{_skip_link}  <div class="container">
 
     <header>
       <a href="/" class="site-title">fourthpin</a>
@@ -221,13 +285,17 @@ _PAGE_SHELL = """\
       </nav>
     </header>
 
-    <main>
+    <main id="main-content">
 {content}
     </main>
 
     <footer>
       <div class="footer-inner">
         <span>\u00a9 2026 fourthpin</span>
+        <span class="footer-links">
+          <a href="{css_prefix}brewing.html">Brew Log</a>
+          <a href="{css_prefix}words.html">Word Log</a>
+        </span>
       </div>
     </footer>
 
@@ -276,6 +344,7 @@ def _brewing_history_html(history: list[dict]) -> str:
         css_prefix="",
         content=content,
         hud_stack=_hud_stack_html(),
+        _skip_link=_SKIP_LINK,
     )
 
 
@@ -315,6 +384,7 @@ def _vocab_history_html(history: list[dict]) -> str:
         css_prefix="",
         content=content,
         hud_stack=_hud_stack_html(),
+        _skip_link=_SKIP_LINK,
     )
 
 
@@ -341,6 +411,7 @@ _POST_LAYOUT = """\
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
   <div class="container">
 
     <header>
@@ -352,7 +423,7 @@ _POST_LAYOUT = """\
       </nav>
     </header>
 
-    <main>
+    <main id="main-content">
 
       <a href="../blog.html" class="back-link">all posts</a>
 
@@ -371,16 +442,17 @@ _POST_LAYOUT = """\
 {content}
         </div>
 
-        <nav class="post-nav" aria-label="Post navigation">
-{prev_next}\
-        </nav>
-
+{post_nav_block}\
       </article>
     </main>
 
     <footer>
       <div class="footer-inner">
         <span>\u00a9 2026 fourthpin</span>
+        <span class="footer-links">
+          <a href="../brewing.html">Brew Log</a>
+          <a href="../words.html">Word Log</a>
+        </span>
       </div>
     </footer>
 
@@ -471,6 +543,14 @@ def build_posts() -> list[dict]:
             href = n["_src"].with_suffix(".html").name
             prev_next += f'          <a href="{href}" class="next">{n["title"]}</a>\n'
 
+        post_nav_block = ""
+        if prev_next.strip():
+            post_nav_block = (
+                '        <nav class="post-nav" aria-label="Post navigation">\n'
+                f"{prev_next}"
+                "        </nav>\n"
+            )
+
         html = _POST_LAYOUT.format(
             title          = meta.get("title", src.stem),
             description    = meta.get("description", meta.get("title", src.stem)),
@@ -478,7 +558,7 @@ def build_posts() -> list[dict]:
             read_time_line = read_time_line,
             tags_line      = tags_line,
             content        = indented,
-            prev_next      = prev_next,
+            post_nav_block = post_nav_block,
             hud_stack      = _hud_stack_html(),
         )
 
@@ -575,6 +655,8 @@ if __name__ == "__main__":
     print()
     print("› HUD cards")
     update_hud_cards()
+    update_page_accessibility()
+    update_footer_links()
     print()
     print("› Posts")
     posts = build_posts()

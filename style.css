@@ -707,7 +707,7 @@ footer {
   margin-top: var(--sp-12);
 }
 
-/* Vietnamese city skyline sketch — decorative illustration above footer text */
+/* City panorama — mountains, beach, LA, Melbourne, London, Saigon */
 footer::before {
   content: '';
   display: block;

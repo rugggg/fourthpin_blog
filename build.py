@@ -153,7 +153,7 @@ _POST_LAYOUT = """\
 
     <footer>
       <div class="footer-inner">
-        <span>\u00a9 2026 Doug Woodward \u00b7 fourthpin</span>
+        <span>\u00a9 2026 fourthpin</span>
       </div>
     </footer>
 

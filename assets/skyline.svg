@@ -1,147 +1,132 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100"
      aria-hidden="true" focusable="false">
-  <g fill="none" stroke="#6B6460" stroke-width="1.2" stroke-linecap="round"
-     stroke-linejoin="round" opacity="0.9">
+  <!--
+    Footer panorama — readable at 80px height.
+    Left → right: mountains, beach, LA, Melbourne, London, Saigon.
+  -->
 
-    <!-- Ground -->
-    <line x1="0" y1="95" x2="1440" y2="95"/>
+  <!-- Ground -->
+  <line x1="0" y1="95" x2="1440" y2="95"
+        stroke="#6B6460" stroke-width="1.2" stroke-linecap="round" opacity="0.85"/>
 
-    <!-- Mountains — distant left backdrop -->
-    <path d="M0,95 L18,72 L42,58 L68,38 L92,52 L118,30 L148,48 L176,62 L205,42 L232,55 L258,95" opacity="0.45"/>
-    <path d="M32,95 L55,68 L78,50 L102,95" opacity="0.35"/>
-    <path d="M88,95 L108,74 L128,58 L152,95" opacity="0.35"/>
+  <!-- ── Mountains + coast ─────────────────────────────────── -->
+  <g fill="none" stroke="#6B6460" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M0,95 L55,52 L110,68 L165,32 L220,58 L280,95"
+          stroke-width="1" opacity="0.22"/>
+    <path d="M0,95 L75,60 L145,42 L210,62 L280,95"
+          stroke-width="1.1" opacity="0.38"/>
+    <path d="M30,95 L100,64 L175,48 L250,95"
+          stroke-width="1.2" opacity="0.55"/>
 
     <!-- Beach -->
-    <path d="M0,95 Q80,82 200,88 T400,95" opacity="0.5"/>
+    <path d="M0,95 C90,86 170,90 280,95"
+          stroke-width="1.2" opacity="0.45"/>
+    <path d="M20,92 C110,84 190,88 270,93"
+          stroke-width="1" opacity="0.3"/>
+  </g>
 
-    <!-- Palm — LA coast -->
-    <path d="M198,95 Q202,72 206,52"/>
-    <path d="M206,52 L192,44 M206,52 L220,44 M206,52 L206,36 M206,52 L188,56 M206,52 L224,56"/>
+  <!-- ── LA ────────────────────────────────────────────────── -->
+  <g fill="none" stroke="#6B6460" stroke-linecap="round" stroke-linejoin="round" opacity="0.88">
+    <!-- Palm -->
+    <path d="M318,95 Q322,68 326,46" stroke-width="1.2"/>
+    <path d="M326,46 C318,40 310,38 326,46 C342,38 334,40 326,46" stroke-width="1"/>
+    <path d="M326,46 V32 M326,46 L312,50 M326,46 L340,50" stroke-width="1"/>
 
-    <!-- LA — art deco + downtown -->
-    <path d="M228,95V68H248V95"/>
-    <path d="M248,95V62H268V95"/>
-    <path d="M268,95V55H288V95"/>
-    <path d="M288,95V48H308V95"/>
-    <path d="M308,95V58H326V95"/>
-    <!-- City Hall stepped tower -->
-    <path d="M334,95V78H358V95"/>
-    <path d="M330,78H362V74H358V78"/>
-    <path d="M336,74H356V70H352V74"/>
-    <path d="M340,70H352V66H348V70"/>
-    <path d="M344,66H348V58H344V66"/>
-    <path d="M346,58V52"/>
-    <path d="M366,95V65H386V95"/>
-    <path d="M386,95V72H404V95"/>
-    <rect x="231" y="74" width="8" height="6"/>
-    <rect x="251" y="68" width="8" height="6"/>
-    <rect x="271" y="62" width="8" height="6"/>
-    <rect x="291" y="55" width="8" height="6"/>
+    <!-- Downtown -->
+    <path d="M350,95 V62 H372 V95" stroke-width="1.2"/>
+    <path d="M378,95 V50 H400 V95" stroke-width="1.2"/>
+    <path d="M406,95 V56 H426 V95" stroke-width="1.2"/>
 
-    <!-- Melbourne — Flinders Street Station -->
-    <path d="M412,95V70H520V95"/>
-    <path d="M408,70C430,64 452,60 466,58C480,60 502,64 524,70"/>
-    <path d="M448,70V52H484V70"/>
-    <path d="M444,52C456,46 466,43 466,43C466,43 476,46 488,52"/>
-    <path d="M456,95V78H476V95"/>
-    <path d="M428,82V74Q436,68 444,74V82"/>
-    <path d="M488,82V74Q496,68 504,74V82"/>
+    <!-- City Hall ziggurat -->
+    <path d="M438,95 V80 H468 V95" stroke-width="1.4"/>
+    <path d="M434,80 H472 V74 H466 V80" stroke-width="1.3"/>
+    <path d="M440,74 H466 V68 H460 V74" stroke-width="1.3"/>
+    <path d="M446,68 H460 V62 H454 V68" stroke-width="1.3"/>
+    <path d="M450,62 V50" stroke-width="1.4"/>
+  </g>
+
+  <!-- ── Melbourne ─────────────────────────────────────────── -->
+  <g fill="none" stroke="#6B6460" stroke-linecap="round" stroke-linejoin="round" opacity="0.9">
+    <!-- Flinders Street Station -->
+    <path d="M520,95 V72 H700 V95" stroke-width="1.3"/>
+    <path d="M514,72 C545,64 575,58 610,56 C645,58 675,64 706,72" stroke-width="1.3"/>
+    <path d="M582,72 V48 H638 V72" stroke-width="1.4"/>
+    <path d="M576,48 C592,42 610,39 610,39 C610,39 628,42 644,48" stroke-width="1.3"/>
+    <path d="M548,95 V80 H572 V95" stroke-width="1.1"/>
+    <path d="M648,95 V80 H672 V95" stroke-width="1.1"/>
+
     <!-- Eureka Tower -->
-    <path d="M528,95V38H544V95"/>
-    <path d="M524,38H548L544,32L540,38"/>
-    <path d="M532,55H540"/>
-    <path d="M532,68H540"/>
+    <path d="M718,95 V28 H736 V95" stroke-width="1.5"/>
+    <path d="M712,28 H742 L730,18 L718,28" stroke-width="1.3"/>
+
     <!-- Arts Centre spire -->
-    <path d="M556,95V72H564V95"/>
-    <path d="M560,72V48M555,55L560,48L565,55"/>
-    <path d="M560,48V32M556,38L560,32L564,38"/>
+    <path d="M754,95 V70 H762 V95" stroke-width="1.2"/>
+    <path d="M758,70 V38" stroke-width="1.4"/>
+    <path d="M758,38 L752,46 M758,38 L764,46 M758,38 V24" stroke-width="1.2"/>
+  </g>
 
-    <!-- London — terraces, Big Ben, Eye -->
+  <!-- ── London ────────────────────────────────────────────── -->
+  <g fill="none" stroke="#6B6460" stroke-linecap="round" stroke-linejoin="round" opacity="0.88">
     <!-- London Eye -->
-    <circle cx="612" cy="72" r="18" opacity="0.5"/>
-    <line x1="612" y1="90" x2="612" y2="95" opacity="0.5"/>
-    <line x1="598" y1="90" x2="598" y2="95" opacity="0.5"/>
-    <line x1="626" y1="90" x2="626" y2="95" opacity="0.5"/>
-    <!-- Terraced houses -->
-    <path d="M576,95V76H596V95"/>
-    <path d="M576,76L586,70L596,76"/>
-    <path d="M598,95V76H618V95"/>
-    <path d="M598,76L608,70L618,76"/>
-    <path d="M636,95V76H656V95"/>
-    <path d="M636,76L646,70L656,76"/>
-    <path d="M658,95V76H678V95"/>
-    <path d="M658,76L668,70L678,76"/>
-    <line x1="586" y1="70" x2="586" y2="66"/>
-    <line x1="608" y1="70" x2="608" y2="66"/>
-    <line x1="646" y1="70" x2="646" y2="66"/>
-    <line x1="668" y1="70" x2="668" y2="66"/>
-    <!-- Elizabeth Tower -->
-    <path d="M688,95V42H718V95"/>
-    <path d="M684,42H722V38H718V42"/>
-    <path d="M692,42V34H714V42"/>
-    <circle cx="703" cy="58" r="5"/>
-    <path d="M703,42V28M698,34L703,28L708,34"/>
-    <path d="M696,95V78H710V95"/>
+    <circle cx="820" cy="66" r="22" stroke-width="1.2" opacity="0.55"/>
+    <path d="M808,88 V95 M820,88 V95 M832,88 V95" stroke-width="1" opacity="0.5"/>
 
-    <!-- Tower Bridge hint -->
-    <path d="M728,95V72H738V95"/>
-    <path d="M748,95V72H758V95"/>
-    <path d="M726,72C734,66 742,64 748,64C754,64 762,66 770,72"/>
-    <path d="M734,72V66H742V72"/>
-    <path d="M744,72V66H752V72"/>
+    <!-- Terraces -->
+    <path d="M858,95 V78 H882 V95" stroke-width="1.1"/>
+    <path d="M858,78 L870,72 L882,78" stroke-width="1.1"/>
+  </g>
 
-    <!-- Saigon — tube houses -->
-    <path d="M782,95V58H802V95"/>
-    <path d="M802,95V52H822V95"/>
-    <path d="M822,95V62H840V95"/>
-    <path d="M840,95V48H862V95"/>
-    <path d="M862,95V55H882V95"/>
-    <rect x="785" y="64" width="9" height="7"/>
-    <rect x="785" y="76" width="9" height="7"/>
-    <rect x="805" y="58" width="9" height="7"/>
-    <rect x="805" y="70" width="9" height="7"/>
-    <rect x="843" y="55" width="10" height="7"/>
-    <rect x="843" y="68" width="10" height="7"/>
+  <g fill="none" stroke="#6B6460" stroke-linecap="round" stroke-linejoin="round" opacity="0.92">
+    <!-- Big Ben -->
+    <path d="M900,95 V34 H934 V95" stroke-width="1.6"/>
+    <path d="M896,34 H938 V28 H934 V34" stroke-width="1.4"/>
+    <path d="M906,34 V24 H928 V34" stroke-width="1.3"/>
+    <circle cx="917" cy="52" r="6" stroke-width="1.3"/>
+    <path d="M917,34 V16 M912,22 L917,16 L922,22" stroke-width="1.3"/>
+    <path d="M908,95 V76 H926 V95" stroke-width="1.2"/>
 
-    <!-- French colonial — Saigon -->
-    <path d="M890,95V58H1006V95"/>
-    <path d="M887,58L948,42L1009,58"/>
-    <path d="M913,58V49H927V58L920,43Z"/>
-    <path d="M971,58V49H985V58L978,43Z"/>
-    <path d="M899,82V70Q907,64 915,70V82"/>
-    <path d="M919,82V70Q927,64 935,70V82"/>
-    <path d="M939,82V70Q947,64 955,70V82"/>
-    <path d="M959,82V70Q967,64 975,70V82"/>
-    <path d="M979,82V70Q987,64 995,70V82"/>
-    <line x1="890" y1="84" x2="1006" y2="84"/>
+    <!-- Tower Bridge -->
+    <path d="M952,95 V74 H964 V95 M976,95 V74 H988 V95" stroke-width="1.2"/>
+    <path d="M948,74 C956,68 964,66 970,66 C976,66 984,68 992,74" stroke-width="1.1"/>
+  </g>
 
-    <!-- Bitexco tower -->
-    <path d="M1014,95V52H1034V95"/>
-    <path d="M1010,52H1038L1024,36L1010,52"/>
-    <path d="M1018,68H1030"/>
-    <path d="M1020,78H1028"/>
+  <!-- ── Saigon ────────────────────────────────────────────── -->
+  <g fill="none" stroke="#6B6460" stroke-linecap="round" stroke-linejoin="round" opacity="0.88">
+    <!-- Phố cổ tube houses -->
+    <path d="M1030,95 V60 H1050 V95 M1050,95 V52 H1072 V95 M1072,95 V66 H1090 V95" stroke-width="1.2"/>
+    <rect x="1033" y="66" width="8" height="6" fill="none" stroke="#6B6460" stroke-width="0.9"/>
+    <rect x="1053" y="58" width="8" height="6" fill="none" stroke="#6B6460" stroke-width="0.9"/>
+
+    <!-- French colonial -->
+    <path d="M1100,95 V56 H1240 V95" stroke-width="1.3"/>
+    <path d="M1096,56 L1170,38 L1244,56" stroke-width="1.3"/>
+    <path d="M1124,56 V44 H1140 V56 L1132,36 Z" stroke-width="1.1"/>
+    <path d="M1200,56 V44 H1216 V56 L1208,36 Z" stroke-width="1.1"/>
+    <path d="M1112,82 V72 Q1124,66 1136,72 V82" stroke-width="1"/>
+    <path d="M1148,82 V72 Q1160,66 1172,72 V82" stroke-width="1"/>
+    <path d="M1184,82 V72 Q1196,66 1208,72 V82" stroke-width="1"/>
+    <path d="M1220,82 V72 Q1232,66 1244,72 V82" stroke-width="1"/>
+    <line x1="1100" y1="84" x2="1240" y2="84" stroke-width="1"/>
+
+    <!-- Bitexco -->
+    <path d="M1256,95 V54 H1278 V95" stroke-width="1.4"/>
+    <path d="M1250,54 H1284 L1267,34 L1250,54" stroke-width="1.3"/>
 
     <!-- Pagoda -->
-    <path d="M1044,95V80H1118V95"/>
-    <path d="M1038,76L1044,80H1118L1124,76"/>
-    <path d="M1052,80V65H1110V80"/>
-    <path d="M1046,61L1052,65H1110L1116,61"/>
-    <path d="M1060,65V52H1102V65"/>
-    <path d="M1054,48L1060,52H1102L1108,48"/>
-    <path d="M1068,52V40H1094V52"/>
-    <path d="M1063,36L1068,40H1094L1099,36"/>
-    <path d="M1081,40V26M1077,32L1081,26L1085,32"/>
+    <path d="M1296,95 V78 H1368 V95" stroke-width="1.3"/>
+    <path d="M1290,74 L1296,78 H1368 L1374,74" stroke-width="1.2"/>
+    <path d="M1306,78 V62 H1358 V78" stroke-width="1.2"/>
+    <path d="M1300,58 L1306,62 H1358 L1364,58" stroke-width="1.1"/>
+    <path d="M1314,62 V48 H1350 V62" stroke-width="1.2"/>
+    <path d="M1308,44 L1314,48 H1350 L1356,44" stroke-width="1.1"/>
+    <path d="M1322,48 V34 H1342 V48" stroke-width="1.2"/>
+    <path d="M1332,34 V22 M1328,28 L1332,22 L1336,28" stroke-width="1.3"/>
+  </g>
 
-    <!-- Saigon tube houses — right fade -->
-    <path d="M1132,95V58H1152V95"/>
-    <path d="M1152,95V66H1170V95"/>
-    <rect x="1135" y="64" width="9" height="7"/>
-    <rect x="1135" y="77" width="9" height="7"/>
-    <path d="M1170,95V52H1192V95" opacity="0.7"/>
-    <rect x="1173" y="59" width="10" height="7" opacity="0.7"/>
-    <path d="M1192,95V62H1210V95" opacity="0.55"/>
-    <path d="M1210,95V55H1232V95" opacity="0.4"/>
-    <path d="M1232,95V68H1250V95" opacity="0.25"/>
-
+  <!-- Fade to heat haze -->
+  <g fill="none" stroke="#6B6460" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M1388,95 V64 H1408 V95" stroke-width="1.1" opacity="0.45"/>
+    <path d="M1408,95 V72 H1426 V95" stroke-width="1" opacity="0.28"/>
+    <path d="M1426,95 V58 H1440 V95" stroke-width="1" opacity="0.15"/>
   </g>
 </svg>
